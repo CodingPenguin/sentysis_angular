@@ -13,7 +13,7 @@ const httpOptions = {
 
 @Injectable()
 export class FormService {
-  ytUrls = 'http://localhost:5000/api/ytUrls';
+  ytUrls = 'http://www.sentysis-flask.herokuapp.com/api/ytUrls';
   constructor(
     private http: HttpClient,
   ) { }
