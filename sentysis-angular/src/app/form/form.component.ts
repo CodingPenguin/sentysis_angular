@@ -25,8 +25,7 @@ export class FormComponent implements OnInit {
       videoUrl: ''
     });
   }
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit(newYtUrl) {
     if(typeof newYtUrl.videoUrl == 'string'){
@@ -46,21 +45,32 @@ export class FormComponent implements OnInit {
     this.youtubeForm.reset();
   }
 
-  // helper methods for onSubmit()
+  // helper methods
+
   verifyUrl(ytUrl) {
-    if(ytUrl.includes('https://www.youtube.com/watch?v=') || ytUrl.includes('https://youtu.be/')) {
-      console.log('IS YOUTUBE URL');
-      this.videoId = this.sliceForVideoId(ytUrl);
-      console.log('videoId -->', this.videoId);
+    let regExp = /(youtu(?:\.be|be\.com)\/(?:.*v(?:\/|=)|(?:.*\/)?)([\w'-]+))/i;
+    if(ytUrl.match(regExp)) {
+      this.videoId = this.extractVideoId(ytUrl);
+      console.log("VIDEO ID EXTRACTED, VIDEO ID -->", this.videoId);
+      console.log("Verified and Extracted");
       return true;
     }
     else {
-      console.log("NOT YOUTUBE URL: " + ytUrl);
-      return false;
+      alert("There was an error. Please make sure the URL is a YouTube URL.");
+      return;
     }
   }
-  sliceForVideoId(ytUrl) {
-    console.log ("SLICED");
-    return ytUrl.slice(-11); // ex: getVideoId(https://www.youtube.com/watch?v=abcdefghijk) returns 'abcdefghijk'
+
+  extractVideoId(ytUrl) {
+    let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    let match = ytUrl.match(regExp);
+    if (match && match[7].length == 11) {
+      console.log(match[7]);
+      return match[7];
+    }
+    else {
+      alert("Could not extract video ID.");
+      return;
+    }
   }
 }
