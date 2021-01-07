@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { YtUrl } from './form-url';
+import { YtVideoId } from './form-ytvideoid';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,12 +13,12 @@ const httpOptions = {
 
 @Injectable()
 export class FormService {
-  ytUrls = 'http://www.sentysis-flask.herokuapp.com/api/ytUrls';
+  ytVideoIds = 'http://www.sentysis-flask.herokuapp.com/api/ytVideoIds';
   constructor(
     private http: HttpClient,
   ) { }
 
-  addYtUrl(ytUrl: YtUrl): Observable<YtUrl> {
-    return this.http.post<YtUrl>(this.ytUrls, ytUrl, httpOptions);
+  addYtVideoId(ytVideoId: YtVideoId): Observable<YtVideoId> {
+    return this.http.post<YtVideoId>(this.ytVideoIds, ytVideoId, httpOptions);
   }
 }
