@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { YtUrl } from './form-url';
+import { YtVideoId } from './form-ytvideoid';
 import { FormService } from './form.service';
+
+import { getVideoId, extractVideoId } from './helpers/form-helpers';
 
 @Component({
   selector: 'app-form',
@@ -12,9 +14,10 @@ import { FormService } from './form.service';
 })
 export class FormComponent implements OnInit {
 
-  ytUrls!: YtUrl[];
+  ytVideoIds!: YtVideoId[];
   youtubeForm;
-  videoId = '';
+  getVideoId = getVideoId;
+  extractVideoId = extractVideoId;
 
 
   constructor(
@@ -28,41 +31,36 @@ export class FormComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(newYtUrl) {
-    if(typeof newYtUrl.videoUrl == 'string'){
-      let stringYtUrl = newYtUrl.videoUrl;
-      if(this.verifyUrl(stringYtUrl)) {
-        console.log('GANGSTA');
-        this.formService
-        .addYtUrl(newYtUrl)
-        .subscribe(ytUrl => this.ytUrls.push(ytUrl));
-
+    let stringYtUrl = newYtUrl.videoUrl;
+    if(typeof stringYtUrl == 'string'){
+      if(getVideoId(stringYtUrl) === "") {
+        console.log("WRONG");
       }
       else {
-        console.log('WRONG');
+        const videoId = extractVideoId(stringYtUrl);
+        this.formService
+        .addYtVideoId(videoId)
+        .subscribe(ytVideoId => this.ytVideoIds.push(ytVideoId));
+        this.youtubeForm.reset();
       }
-      this.youtubeForm.reset();
     }
     this.youtubeForm.reset();
   }
 
-  // helper methods
 
-  verifyUrl(ytUrl) {
+/*  getVideoId(ytUrl) {
     let regExp = /(youtu(?:\.be|be\.com)\/(?:.*v(?:\/|=)|(?:.*\/)?)([\w'-]+))/i;
-    if(ytUrl.match(regExp)) {
-      this.videoId = this.extractVideoId(ytUrl);
-      console.log("VIDEO ID EXTRACTED, VIDEO ID -->", this.videoId);
-      console.log("Verified and Extracted");
-      return true;
-    }
-    else {
+    if(!ytUrl.match(regExp)) {
       alert("There was an error. Please make sure the URL is a YouTube URL.");
-      return;
+      return "";
     }
+    this.videoId = this.extractVideoId(ytUrl);
+    console.log("Verified and Extracted");
+    return this.videoId;
   }
 
   extractVideoId(ytUrl) {
-    let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/     /*;
     let match = ytUrl.match(regExp);
     if (match && match[7].length == 11) {
       console.log(match[7]);
@@ -70,7 +68,7 @@ export class FormComponent implements OnInit {
     }
     else {
       alert("Could not extract video ID.");
-      return;
+      return "";
     }
-  }
+  }*/
 }
