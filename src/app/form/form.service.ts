@@ -13,7 +13,7 @@ const httpOptions = {
 
 @Injectable()
 export class FormService {
-  ytVideoIds = 'http://www.sentysis-flask.herokuapp.com/api/ytVideoIds';
+  ytVideoIds = 'sentysis-flask.herokuapp.com/api/ytVideoIds';
   constructor(
     private http: HttpClient,
   ) { }
