@@ -19,7 +19,7 @@ export class FormService {
 
   addYtVideoId(ytVideoId: YtVideoId): Observable<YtVideoId> {
     const ytVideoIdData = {
-      "videoId": ytVideoId
+      "id": ytVideoId
     };
     console.log(ytVideoIdData);
     return this.http.post<YtVideoId>(this.ytVideoIds, ytVideoIdData, httpOptions);
