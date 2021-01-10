@@ -6,8 +6,7 @@ import { YtVideoId } from './form-ytvideoid';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    Authorization: 'my-auth-token'
+    'Content-Type': 'application/json',
   })
 };
 
@@ -19,6 +18,10 @@ export class FormService {
   ) { }
 
   addYtVideoId(ytVideoId: YtVideoId): Observable<YtVideoId> {
-    return this.http.post<YtVideoId>(this.ytVideoIds, ytVideoId, httpOptions);
+    const ytVideoIdData = {
+      "videoId": ytVideoId
+    };
+    console.log(ytVideoIdData);
+    return this.http.post<YtVideoId>(this.ytVideoIds, ytVideoIdData, httpOptions);
   }
 }

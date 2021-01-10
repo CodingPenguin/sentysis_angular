@@ -14,7 +14,7 @@ import { getVideoId, extractVideoId } from './helpers/form-helpers';
 })
 export class FormComponent implements OnInit {
 
-  ytVideoIds!: YtVideoId[];
+  ytVideoIds: YtVideoId[] = [];
   youtubeForm;
   getVideoId = getVideoId;
   extractVideoId = extractVideoId;
@@ -25,8 +25,9 @@ export class FormComponent implements OnInit {
     private formService: FormService
   ) {
     this.youtubeForm = this.formBuilder.group({
-      videoUrl: ''
+      videoUrl: ['']
     });
+    this.ytVideoIds = [];
   }
   ngOnInit() {}
 
