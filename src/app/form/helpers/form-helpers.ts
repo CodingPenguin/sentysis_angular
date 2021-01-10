@@ -21,7 +21,3 @@ export function extractVideoId(ytUrl) {
     return "";
   }
 }
-
-export function hello() {
-  return "Hello";
-}
