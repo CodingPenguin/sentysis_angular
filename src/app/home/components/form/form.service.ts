@@ -4,6 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { YtVideoId } from './form-ytvideoid';
 
+const URL = {
+  'production': 'http://sentysis-flask.herokuapp.com/api/ytVideoIds',
+  'local': 'http://127.0.0.1:5000/api/ytVideoIds' 
+};
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -12,7 +17,7 @@ const httpOptions = {
 
 @Injectable()
 export class FormService {
-  ytVideoIds = 'http://sentysis-flask.herokuapp.com/api/ytVideoIds';
+  ytVideoIds = URL['local']
   constructor(
     private http: HttpClient,
   ) { }
