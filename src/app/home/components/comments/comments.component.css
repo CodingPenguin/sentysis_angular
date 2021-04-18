@@ -1,0 +1,82 @@
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 15px;
+    text-align: left;
+    padding: 15px;
+    border-radius: 5px;
+}
+.sentiments {
+    margin: 60px 0 0 0;
+    /* background: #6d81952e; */
+    background: #f5f5f5;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+.column {
+    text-align: center;
+    width: 100%;
+}
+
+.bad li {
+    background-color: #EA4C46;
+} 
+
+.good li {
+    background-color: #a4c2f4;
+}
+
+ul .best {
+    background-color: #6d9eeb;
+}
+
+ul .worst {
+    background-color: #dc2d24;
+}
+
+
+/* getCardGradient = ({sentiment}) => ({
+    color: getColorFor(sentiment),
+    emoji: getEmojiFor(sentiment)
+}) */
+
+/* 
+GOOD 
+
+COLORS
+
+#7AD7F0
+
+#92DFF3
+
+#B7E9F7
+
+#DBF3FA
+
+#F5FCFF
+
+EMOJIS
+
+😆
+😄
+😁
+😀
+🙂
+
+BAD
+
+COLORS
+
+#dc2d24
+
+#EA4C46
+
+#F07470
+
+#F1959B
+
+#F6BDC0
+*/

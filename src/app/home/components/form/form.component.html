@@ -1,7 +1,22 @@
-<form [formGroup]='youtubeForm' (ngSubmit)='onSubmit(youtubeForm.value)' >
-  <div>
-    <label for="videoUrl">YouTube URL</label>
-    <input type="text" formControlName='videoUrl' placeholder="https://www.youtube.com/watch?v=abcdefghijk or https://youtu.be/abcdefghijk">
+<form [formGroup]='youtubeForm' (ngSubmit)='onSubmit(youtubeForm.value)' class="form" >
+
+  <h5>Enter a YouTube Link or URL 👇</h5>
+  <div class="input-group mb-3">
+    <input
+      class="form-control"
+      type="text"
+      formControlName='videoUrl'
+      placeholder=""
+    >
+    <div class="input-group-append">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        id="button-addon2"
+        [disabled]="isDisabled"
+      >
+        Go!!!
+      </button>
+    </div>
   </div>
-  <button type="button" type="submit">Submit Loser</button>
 </form>

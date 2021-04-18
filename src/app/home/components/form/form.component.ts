@@ -1,56 +1,61 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { tap, first } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
+import { YtResponse, YtComments} from '../../home-ytresponse';
 
-import { YtVideoId } from './form-ytvideoid';
-import { FormService } from './form.service';
+import { HomeService } from '../../home.service';
 
-import { getVideoId, extractVideoId } from './helpers/form-helpers';
+import { getVideoId } from './helpers/form-helpers';
 
 @Component({
   selector: 'home-form',
-  providers: [FormService],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
 
-  ytVideoIds: YtVideoId[] = [];
   youtubeForm;
-  getVideoId = getVideoId;
-  extractVideoId = extractVideoId;
+  comments: YtComments[] = [];
+  weightedStandardDev;
+  weightedMean;
+  avgLikesCount;
+  response = new BehaviorSubject<YtResponse | null>(null);
+  isDisabled: boolean = false;
 
 
   constructor(
     private formBuilder: FormBuilder,
-    private formService: FormService
+    private homeService: HomeService,
   ) {
     this.youtubeForm = this.formBuilder.group({
-      videoUrl: ['']
+      // TODO: Remove before deployment!!
+      videoUrl: ['https://www.youtube.com/watch?v=Dn1m-XUO7As']
     });
-    this.ytVideoIds = [];
   }
   ngOnInit() {}
 
-  onSubmit(newYtUrl) {
-    let stringYtUrl = newYtUrl.videoUrl;
-    if(typeof stringYtUrl == 'string'){
-      if(getVideoId(stringYtUrl) === "") {
-        console.log("WRONG");
-      }
-      else {
-        const videoId = extractVideoId(stringYtUrl);
-        this.formService
-        .addYtVideoId(videoId)
-        .pipe(
-          first(),
-          tap(data => console.log({data}))
-        )
-        .subscribe(ytVideoId => this.ytVideoIds.push(ytVideoId));
-        this.youtubeForm.reset();
-      }
-    }
-    this.youtubeForm.reset();
+  ngOnDestroy() {
+    this.homeService.ngUnsubscribe.next();
+    this.homeService.ngUnsubscribe.complete();
   }
 
+  onSubmit(ytUrl): void {
+    if (!ytUrl) {
+      return;
+    }
+
+    if (!ytUrl.videoUrl) {
+      return;
+    }
+
+    this.isDisabled = true;
+    const newYtUrl = ytUrl.videoUrl;
+    const videoId = getVideoId(newYtUrl);
+    this.homeService.fetchComments(videoId, () => this.onComplete());
+  }
+
+  onComplete() {
+    this.youtubeForm.reset()
+    this.isDisabled = false;
+  } 
 }
