@@ -1,30 +1,35 @@
 export class YtResponse {
   title: string = '';
-  comments: YtComments[] = [];
-  avgLikesCount: number = 0;
-  weightedMean: number = 0;
-  weightedStdDev: number = 0;
+  comments: YtComment[] = [];
+  statistics: {
+    "avgLikesCount": number,
+    "weightedMean": number,
+    "weightedStdDev": number,
+  };
 
   constructor(data: any) {
 
-    const keys = Object.keys(this);
-    keys.forEach((key: string) => {
-      if (data[key] !== undefined) {
-        (this as any)[key] = data[key];
-      }
-    });
-    
-    // these fields did not auto-assign so i did it manually
-    this.avgLikesCount = data.statistics["avg_likes_count"]; 
-    this.weightedMean = data.statistics["weighted_mean"];
-    this.weightedStdDev = data.statistics["weighted_std_dev"];
+    if(!("comments" in data)) {
+      throw new Error("No Comments!!!");
+    }
+    if(!("title" in data)) {
+      throw new Error("No TITLE!!!");
+    }
+    if(!("statistics" in data)) {
+      throw new Error("No STATISTICS!!!");
+    }
+
+    this.comments = data.comments.map(comment => new YtComment(comment));
+    this.title = data.title;
+    this.statistics = data.statistics;
   }
 }
 
-export class YtComments {
+export class YtComment {
   value: string = '';
   sentiment: number = 0;
   likes: number = 0;
+  emoji: string = '';
 
   constructor(data: any) {
 
@@ -34,5 +39,42 @@ export class YtComments {
         (this as any)[key] = data[key];
       }
     });
+  }
+
+  getEmoji() {   
+    switch(true) {
+      case (this.sentiment < -0.8):
+        this.emoji = "🤬";
+        break;
+      case (this.sentiment < -0.6):
+        this.emoji = "😡";
+        break;
+      case (this.sentiment < -0.4):
+        this.emoji = "😠";
+        break;
+      case (this.sentiment < -0.2):
+        this.emoji = "😒";
+        break;
+      case (this.sentiment < 0):
+        this.emoji = "😕";
+        break;
+      case (this.sentiment < 0.2):
+        this.emoji = "🙂";
+        break;
+      case (this.sentiment < 0.4):
+        this.emoji = "😀";
+        break;
+      case (this.sentiment < 0.6):
+        this.emoji = "😁";
+        break;
+      case (this.sentiment < 0.8):
+        this.emoji = "😄";
+        break;
+      case (this.sentiment < 1.0):
+        this.emoji = "😆";
+        break;
+      default:
+        this.emoji = "😐";
+    }
   }
 }

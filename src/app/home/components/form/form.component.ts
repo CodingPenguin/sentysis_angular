@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { YtResponse, YtComments} from '../../home-ytresponse';
+import { YtResponse, YtComment} from '../../home-ytresponse';
 
 import { HomeService } from '../../home.service';
 
@@ -15,7 +15,7 @@ import { getVideoId } from './helpers/form-helpers';
 export class FormComponent implements OnInit, OnDestroy {
 
   youtubeForm;
-  comments: YtComments[] = [];
+  comments: YtComment[] = [];
   weightedStandardDev;
   weightedMean;
   avgLikesCount;
