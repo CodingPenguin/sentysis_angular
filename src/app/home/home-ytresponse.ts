@@ -1,5 +1,5 @@
 export class YtResponse {
-  title: string = '';
+  // title: string = '';
   comments: YtComment[] = [];
   statistics: {
     "avgLikesCount": number,
@@ -12,15 +12,15 @@ export class YtResponse {
     if(!("comments" in data)) {
       throw new Error("No Comments!!!");
     }
-    if(!("title" in data)) {
-      throw new Error("No TITLE!!!");
-    }
+    // if(!("title" in data)) {
+    //   throw new Error("No TITLE!!!");
+    // }
     if(!("statistics" in data)) {
       throw new Error("No STATISTICS!!!");
     }
 
     this.comments = data.comments.map(comment => new YtComment(comment));
-    this.title = data.title;
+    // this.title = data.title;
     this.statistics = data.statistics;
   }
 }
@@ -39,42 +39,5 @@ export class YtComment {
         (this as any)[key] = data[key];
       }
     });
-  }
-
-  getEmoji() {   
-    switch(true) {
-      case (this.sentiment < -0.8):
-        this.emoji = "🤬";
-        break;
-      case (this.sentiment < -0.6):
-        this.emoji = "😡";
-        break;
-      case (this.sentiment < -0.4):
-        this.emoji = "😠";
-        break;
-      case (this.sentiment < -0.2):
-        this.emoji = "😒";
-        break;
-      case (this.sentiment < 0):
-        this.emoji = "😕";
-        break;
-      case (this.sentiment < 0.2):
-        this.emoji = "🙂";
-        break;
-      case (this.sentiment < 0.4):
-        this.emoji = "😀";
-        break;
-      case (this.sentiment < 0.6):
-        this.emoji = "😁";
-        break;
-      case (this.sentiment < 0.8):
-        this.emoji = "😄";
-        break;
-      case (this.sentiment < 1.0):
-        this.emoji = "😆";
-        break;
-      default:
-        this.emoji = "😐";
-    }
   }
 }

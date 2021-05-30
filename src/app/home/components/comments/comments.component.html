@@ -1,27 +1,30 @@
-<!-- <div *ngIf="isShow">
+<div class="card-deck">
+    <h3>Negative Comments</h3>
+    <ul>
+        <li *ngFor="let comment of negativeComments">
+            <div class="card border-danger mt-3">
+                <div class="card-body feat">
+                    <p class="card-text text-danger scroll text">{{comment.value}}</p>
+                    <span class="emoji">{{comment.emoji}}</span>
+                </div>
+            </div>
+        </li>    
+    </ul>
+</div>
+<div class="card-deck">
+    <h3>Positive Comments</h3>
+    <ul>
+        <li *ngFor="let comment of positiveComments">
+            <div class="card border-primary mt-3">
+                <div class="card-body feat">
+                    <p class="card-text text-primary scroll text">{{comment.value}}</p>
+                    <span class="emoji">{{comment.emoji}}</span>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
 
-    <li *ngFor="let comment of commentData.comments">
-        {{comment.j | json}}
-
-    </li>
-
-</div> -->
-
-
-<div class="d-flex flex-row bd-highlight mb-3 sentiments">
-    <div class="p-2 bd-highlight bad column">
-        <h3>BAD 😡</h3>
-        <ul>
-            <li *ngFor="let comment of negativeComments">{{comment.value + comment.emoji}}<span *ngIf=commen></span></li>    
-        </ul>
-    </div>
-    <div class="p-2 bd-highlight good column">
-        <h3>GOOD 😊</h3>
-        <ul>
-            <li *ngFor="let comment of positiveComments">{{comment.value + comment.emoji}}</li>
-        </ul>
-    </div>
-  </div>
 
 
 
