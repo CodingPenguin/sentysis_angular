@@ -49,6 +49,7 @@ export class FormComponent implements OnInit, OnDestroy {
     }
 
     this.isDisabled = true;
+    document.getElementById('loader').style.display = 'block';
     const newYtUrl = ytUrl.videoUrl;
     const videoId = getVideoId(newYtUrl);
     this.homeService.fetchComments(videoId, () => this.onComplete());
@@ -57,5 +58,6 @@ export class FormComponent implements OnInit, OnDestroy {
   onComplete() {
     this.youtubeForm.reset()
     this.isDisabled = false;
+    document.getElementById('loader').style.display = 'none';
   } 
 }

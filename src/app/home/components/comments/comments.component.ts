@@ -37,6 +37,9 @@ export class CommentsComponent implements OnInit {
   isShow: boolean = false;
   negativeComments: YtComment[];
   positiveComments: YtComment[];
+  avgLikesCount: number;
+  weightedMean: number;
+  weightedStdDev: number;
 
   constructor(
     private homeService: HomeService
@@ -52,6 +55,9 @@ export class CommentsComponent implements OnInit {
             this.isShow = true;
             this.negativeComments = processComments(data)["negatives"]; 
             this.positiveComments = processComments(data)["positives"]; 
+            this.avgLikesCount = this.commentData['statistics']['avg_likes_count'];
+            this.weightedMean = this.commentData['statistics']['weighted_mean'];
+            this.weightedStdDev = this.commentData['statistics']['weighted_std_dev'];
           }
         );
 

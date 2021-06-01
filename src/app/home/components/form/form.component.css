@@ -1,12 +1,29 @@
-.form {
-    background: #f5f5f5;
-    padding: 30px 30px 20px 30px;
-    border-radius: 5px;
-    width: 100%;
+@font-face {
+  font-family: Quicksand;
+  src: url('../../../../assets/fonts/quicksnd.ttf');
 }
 
-h5 {
-    margin-bottom: 30px;
+.form-wrapper {
+  flex-basis: 0;
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../../../../assets/images/emoji.jpg');
+}
+
+.form {
+    background: transparent;
+    padding: 30px 30px 20px 30px;
+    border-radius: 5px;
+    width: 80%;
+    margin: auto;
+}
+
+h4 {
+    color: white;
+    font-family: Quicksand;
+    text-align: center;
 }
 
 .input-group {
@@ -18,3 +35,37 @@ label {
     padding: 10px;
 }
 
+#loader {
+    display: none;
+}
+
+.lds-dual-ring {
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    position: fixed;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid black;
+    border-color: black transparent black transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

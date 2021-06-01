@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject, Subscription, of, Subject } from 'rxjs';
+import { Observable, Subscription, of, Subject } from 'rxjs';
 import { first, map, takeUntil, takeWhile, tap } from 'rxjs/operators';
 import { YtResponse } from './home-ytresponse';
 
@@ -31,7 +31,7 @@ export class HomeService {
 
   fetchComments(ytVideoId: string, callback: Function): Subscription {
     const payload: {'videoId': string} = { "videoId": ytVideoId };
-    const apiUrl = URL['local'];
+    const apiUrl = URL['production'];
 
     return this.http.post<YtResponse>(apiUrl, payload, httpOptions)
         .pipe(
@@ -42,7 +42,7 @@ export class HomeService {
         ).subscribe(
             (data: YtResponse) => this.commentData.next(data),
             (err: HttpErrorResponse) => this.onCatchErr(err),
-            () => callback()
+            () => { callback(), document.getElementById('loader').style.display = 'none';}
         );
   }
 }

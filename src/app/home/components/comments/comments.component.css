@@ -1,73 +1,73 @@
 ul {
     list-style-type: none;
+    max-height: 100vh;
+    overflow-y: auto;
 }
 
 li {
     text-align: left;
     color: #f8f9fa;
+}
+
+.stats {
+    font-family: Quicksand;
+    margin-top: 75px;
     display: flex;
+    flex-direction: column;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.stats-box {
+    display: flex;
+    flex-direction: row;
+}
+
+.stats-box .card {
+    text-align: center;
+}
+
+.stats-box .card .card-body {
+    font-size: 32px;
+}
+
+.box {
+    font-family: Quicksand;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-top: 75px;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    overflow-y: auto;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    text-align: center;
 }
 
 .feat {
     display: flex;
     justify-content: center;
 }
-.text {
-    width: 97%;
-}
+
 .emoji {   
     font-size: 32px;
     margin: 0 10px 0 10px;
     width: 3%;
+
 }
 
-.scroll {
+.card-text {
     max-height: 100px;
     overflow-y: auto;
+    width: 97%;
 }
 .sentiments {
     border-radius: 5px;
 }
-
-/* getCardGradient = ({sentiment}) => ({
-    color: getColorFor(sentiment),
-    emoji: getEmojiFor(sentiment)
-}) */
-
-/* 
-GOOD 
-
-COLORS
-
-#7AD7F0
-
-#92DFF3
-
-#B7E9F7
-
-#DBF3FA
-
-#F5FCFF
-
-EMOJIS
-
-😆
-😄
-😁
-😀
-🙂
-
-BAD
-
-COLORS
-
-#dc2d24
-
-#EA4C46
-
-#F07470
-
-#F1959B
-
-#F6BDC0
- */
