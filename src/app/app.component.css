@@ -23,9 +23,11 @@ body {
     flex: 0 1 auto;
     background-color: #f5f5f5;
     font-family: Quicksand;
+    height: 6vh;
 
 }
 
 .content {
     flex: 1 1 auto;
+    height: 94vh;
 }

@@ -1,12 +1,6 @@
-ul {
-    list-style-type: none;
-    max-height: 100vh;
-    overflow-y: auto;
-}
-
-li {
-    text-align: left;
-    color: #f8f9fa;
+h3 {
+    text-align: center;
+    font-family: Quicksand;
 }
 
 .stats {
@@ -21,6 +15,7 @@ li {
 .stats-box {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .stats-box .card {
@@ -31,24 +26,40 @@ li {
     font-size: 32px;
 }
 
+.comments {
+    margin-top: 75px;
+}
+
 .box {
     font-family: Quicksand;
     padding-left: 60px;
     padding-right: 60px;
-    margin-top: 75px;
     display: flex;
     flex-direction: row;
     height: auto;
     overflow-y: auto;
+    justify-content: center;
 }
 
-.comments {
+.card-deck.comments-box {
+    flex: 1 1 50%;
     display: flex;
     flex-direction: column;
 }
 
-h3 {
-    text-align: center;
+ul {
+    list-style-type: none;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding-left: 0;
+}
+
+ul.negative {
+    padding-right: 15px;
+}
+li {
+    text-align: left;
+    color: #f8f9fa;
 }
 
 .feat {

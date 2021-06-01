@@ -1,12 +1,12 @@
 <div class="form-wrapper">
   <form [formGroup]='youtubeForm' (ngSubmit)='onSubmit(youtubeForm.value)' class="form" >
-    <h4>Enter a YouTube Link or URL 👇</h4>
+    <h3>Enter a YouTube Link or URL 👇</h3>
     <div class="input-group mb-3">
       <input
         class="form-control"
         type="text"
         formControlName='videoUrl'
-        placeholder=""
+        placeholder="https://www.youtube.com/watch?v=1RPjPIy0G88"
       >
       <div class="input-group-append">
         <button
@@ -19,7 +19,7 @@
         </button>
       </div>
     </div>
+    <div id="loader" class="lds-dual-ring"></div>
   </form>
+  
 </div>
-
-<div class="lds-dual-ring" id="loader"></div>

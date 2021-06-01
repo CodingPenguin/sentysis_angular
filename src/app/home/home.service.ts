@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, Subscription, of, Subject } from 'rxjs';
-import { first, map, takeUntil, takeWhile, tap } from 'rxjs/operators';
+import { first, map, takeUntil, tap } from 'rxjs/operators';
 import { YtResponse } from './home-ytresponse';
 
 const URL = {
-  'production': 'http://sentysis-flask.herokuapp.com/api/ytVideoIds',
-  'local': 'http://127.0.0.1:5000/api/ytVideoIds' 
+  'production': 'http://sentysis-flask.herokuapp.com/api/ytVideoId',
+  'local': 'http://127.0.0.1:5000/api/ytVideoId' 
 };
 
 const httpOptions = {
@@ -42,7 +42,7 @@ export class HomeService {
         ).subscribe(
             (data: YtResponse) => this.commentData.next(data),
             (err: HttpErrorResponse) => this.onCatchErr(err),
-            () => { callback(), document.getElementById('loader').style.display = 'none';}
+            () => { callback() }
         );
   }
 }
