@@ -5,7 +5,7 @@ import { first, map, takeUntil, tap } from 'rxjs/operators';
 import { YtResponse } from './home-ytresponse';
 
 const URL = {
-  'production': 'http://sentysis-flask.herokuapp.com/api/ytVideoId',
+  'production': 'https://sentysis-flask.herokuapp.com/api/ytVideoId',
   'local': 'http://127.0.0.1:5000/api/ytVideoId' 
 };
 
