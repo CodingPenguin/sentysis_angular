@@ -5,5 +5,5 @@ Want to see how people feel about a YouTube video? Use [Sentysis](https://sentys
 
 ## Info
 
-Sentysis uses the [VADER Sentiment tool](https://github.com/cjhutto/vaderSentiment) to calculate each sampled comment's sentiment on a scale from -1.0 -- the most extreme negative -- to 1.0 -- the most extreme positive. The implementation of this library and many others can be seen (here)[https://github.com/CodingPenguin/sentysis-flask].
+Sentysis uses the [VADER Sentiment tool](https://github.com/cjhutto/vaderSentiment) to calculate each sampled comment's sentiment on a scale from -1.0 -- the most extreme negative -- to 1.0 -- the most extreme positive. The implementation of this library and many others can be seen [here](https://github.com/CodingPenguin/sentysis-flask).
 
