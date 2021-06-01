@@ -1,73 +1,84 @@
-ul {
-    list-style-type: none;
+h3 {
+    text-align: center;
+    font-family: Quicksand;
 }
 
+.stats {
+    font-family: Quicksand;
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.stats-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.stats-box .card {
+    text-align: center;
+}
+
+.stats-box .card .card-body {
+    font-size: 32px;
+}
+
+.comments {
+    margin-top: 75px;
+}
+
+.box {
+    font-family: Quicksand;
+    padding-left: 60px;
+    padding-right: 60px;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    overflow-y: auto;
+    justify-content: center;
+}
+
+.card-deck.comments-box {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    list-style-type: none;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding-left: 0;
+}
+
+ul.negative {
+    padding-right: 15px;
+}
 li {
     text-align: left;
     color: #f8f9fa;
-    display: flex;
 }
 
 .feat {
     display: flex;
     justify-content: center;
 }
-.text {
-    width: 97%;
-}
+
 .emoji {   
     font-size: 32px;
     margin: 0 10px 0 10px;
     width: 3%;
+
 }
 
-.scroll {
+.card-text {
     max-height: 100px;
     overflow-y: auto;
+    width: 97%;
 }
 .sentiments {
     border-radius: 5px;
 }
-
-/* getCardGradient = ({sentiment}) => ({
-    color: getColorFor(sentiment),
-    emoji: getEmojiFor(sentiment)
-}) */
-
-/* 
-GOOD 
-
-COLORS
-
-#7AD7F0
-
-#92DFF3
-
-#B7E9F7
-
-#DBF3FA
-
-#F5FCFF
-
-EMOJIS
-
-😆
-😄
-😁
-😀
-🙂
-
-BAD
-
-COLORS
-
-#dc2d24
-
-#EA4C46
-
-#F07470
-
-#F1959B
-
-#F6BDC0
- */

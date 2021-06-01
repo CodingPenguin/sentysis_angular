@@ -1,30 +1,52 @@
-<div class="card-deck">
-    <h3>Negative Comments</h3>
-    <ul>
-        <li *ngFor="let comment of negativeComments">
-            <div class="card border-danger mt-3">
-                <div class="card-body feat">
-                    <p class="card-text text-danger scroll text">{{comment.value}}</p>
-                    <span class="emoji">{{comment.emoji}}</span>
-                </div>
-            </div>
-        </li>    
-    </ul>
-</div>
-<div class="card-deck">
-    <h3>Positive Comments</h3>
-    <ul>
-        <li *ngFor="let comment of positiveComments">
-            <div class="card border-primary mt-3">
-                <div class="card-body feat">
-                    <p class="card-text text-primary scroll text">{{comment.value}}</p>
-                    <span class="emoji">{{comment.emoji}}</span>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
 
+<div class="card-deck stats" *ngIf="isShow">
+    <h3>Statistics</h3>
+    <div class="stats-box">
+        <div class="card border-dark mt-3">
+            <div class="card-header bg-transparent">Average Likes Count</div>
+            <div class="card-body">{{avgLikesCount}}</div>
+        </div> 
+        <div class="card border-dark mt-3">
+            <div class="card-header bg-transparent">Weighted Mean Sentiment (-1.0 to 1.0)</div>
+            <div class="card-body">{{weightedMean}}</div>
+        </div> 
+        <div class="card border-dark mt-3">
+            <div class="card-header bg-transparent">Weighted Standard Deviation</div>
+            <div class="card-body">{{weightedStdDev}}</div>
+        </div> 
+    </div>    
+</div>
+<div class="comments" *ngIf="isShow">
+    <h3>Comments</h3>
+
+    <div class="box" *ngIf="isShow">
+        <div class="card-deck comments-box">
+            <ul class="negative">
+                <li *ngFor="let comment of negativeComments">
+                    <div class="card border-danger mt-3">
+                        <div class="card-body feat">
+                            <p class="card-text text-danger scroll text">{{comment.value}} <br>({{comment.likes}} likes)</p>
+                            <span class="emoji">{{comment.emoji}}</span>
+                        </div>
+                    </div>
+                </li>    
+            </ul>
+        </div>
+
+        <div class="card-deck comments-box">
+            <ul class="positive">
+                <li *ngFor="let comment of positiveComments">
+                    <div class="card border-primary mt-3">
+                        <div class="card-body feat">
+                            <p class="card-text text-primary scroll text">{{comment.value}} <br>({{comment.likes}} likes)</p>
+                            <span class="emoji">{{comment.emoji}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 
 
